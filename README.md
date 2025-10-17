@@ -1,0 +1,1 @@
+götünüzü skm beyler
