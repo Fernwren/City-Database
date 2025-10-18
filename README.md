@@ -1,2 +1,1 @@
-götünüzü skm beyler
-olm excel dosyası okumicaz mi sen niye texti açıyon
+kurcalarken dosyaları bozduğum için herşeyi sildim baştan yükleyin ama ayrı branch falan açın
