@@ -6,6 +6,35 @@ internal class Program
     static Random random = new Random();
     static string[] cities = new string[82];
 
+    static string[] readCities(string name)
+    {
+        string[] cities = new string[82];
+        int index = 1;
+        StreamReader file = new StreamReader(name);
+        string line= file.ReadLine();
+        while (line != null)
+        {
+            cities[index++] = line;
+            line = file.ReadLine();
+        }
+        return cities;
+    }
+    static Hashtable readNeighbours(string name)
+    {
+        Hashtable neighborhood = new Hashtable();
+        StreamReader file = new StreamReader("neighbourCities.txt");
+        string line = file.ReadLine();
+
+        while (line != null)
+        {
+            string[] temp = line.Split(new char[] { ',' });
+            ArrayList temp2 = new ArrayList();
+            foreach (string i in temp.Skip(1)) { temp2.Add(i); }
+            neighborhood[temp[0]] = temp2;
+            line = file.ReadLine();
+        }
+        return neighborhood;
+    }
     static void tenCityTrip(string[] cities, int[,] distances=null)
     {
         int prevCity = random.Next(1, 82);
@@ -20,47 +49,25 @@ internal class Program
             //totalDistance += distances[prevCity,nextCity];
         }
     }
+   
 
     private static void Main(string[] args)
     {
-        try
+        string[] cities = readCities("cities.txt");
+        tenCityTrip(cities, null);
+        Hashtable neighborhood = readNeighbours("neighbourCities.txt");
+        
+        for(int i = 1; i < cities.Length; i++)
         {
-            StreamReader file = new StreamReader("cities.txt");
-            string line = file.ReadLine();
-            int index = 1;
-
-            while (line != null)
+            Console.Write(cities[i]+": ");
+            if (neighborhood[cities[i]].GetType()==new ArrayList().GetType())
             {
-                cities[index] = line;
-                index++;
-                line = file.ReadLine();
+                foreach(string c in (ArrayList)neighborhood[cities[i]])
+                {
+                    Console.Write(c+" ");
+                }
+                Console.WriteLine();
             }
-            
-            tenCityTrip(cities);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("fatal error");
-        }
-
-
-        try
-        {
-            Hashtable neighborhood = new Hashtable();
-            StreamReader file = new StreamReader("neighbourCities.txt");
-            string line = file.ReadLine();
-
-            while (line != null)
-            {
-                string[] temp = line.Split(new char[] { ',' });
-                neighborhood[temp[0]] = temp.Skip(1);
-                //???????????????????????????????????????????????????????????
-                line = file.ReadLine();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("fatal error");
         }
     }
 }
