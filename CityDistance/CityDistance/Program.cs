@@ -37,14 +37,24 @@ internal class Program
     }
     static void tenCityTrip(string[] cities, int[,] distances=null)
     {
-        int prevCity = random.Next(1, 82);
-        Console.WriteLine(cities[prevCity]);
         int totalDistance = 0;
+        string[] citiesCopy = (string[])cities.Clone();
+        
+        int upperLimit = 82;
+
+        int prevCity = random.Next(1, upperLimit--);
+        Console.WriteLine(citiesCopy[prevCity]);
+        
+        
+        citiesCopy[prevCity] = citiesCopy[upperLimit];
+
+        
         for (int i = 0; i < 9; i++)
         {
-            int nextCity = random.Next(1,82);
+            int nextCity = random.Next(1,upperLimit--);
             //Console.WriteLine(distances[prevCity,nextCity]);
-            Console.WriteLine(cities[nextCity]);
+            Console.WriteLine(citiesCopy[nextCity]);
+            citiesCopy[nextCity] = citiesCopy[upperLimit];
             prevCity = nextCity;
             //totalDistance += distances[prevCity,nextCity];
         }
