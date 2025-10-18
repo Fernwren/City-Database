@@ -12,3 +12,13 @@ C:\C#\CityDistance\CityDistance\obj\Debug\net8.0\refint\CityDistance.dll
 C:\C#\CityDistance\CityDistance\obj\Debug\net8.0\CityDistance.pdb
 C:\C#\CityDistance\CityDistance\obj\Debug\net8.0\CityDistance.genruntimeconfig.cache
 C:\C#\CityDistance\CityDistance\obj\Debug\net8.0\ref\CityDistance.dll
+C:\C#\CityDistance\CityDistance\obj\Debug\net8.0\CityDistance.csproj.AssemblyReference.cache
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\ClosedXML.dll
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\RBush.dll
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\C#\CityDistance\CityDistance\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\C#\CityDistance\CityDistance\obj\Debug\net8.0\CityDist.D9C0BACC.Up2Date
