@@ -72,30 +72,22 @@ internal class Program
 
         return distances;
     }
-    static void tenCityTrip(string[] cities, int[,] distances=null)
+    static void tenCityTrip(string[] cities, int[,] distances)
     {
         int totalDistance = 0;
-        string[] citiesCopy = (string[])cities.Clone();
-        
-        int upperLimit = 82;
-
-        int prevCity = random.Next(1, upperLimit--);
+        int prevCity = random.Next(1, 82);
         Console.WriteLine("--------------------------------");
-        Console.Write(citiesCopy[prevCity] + " ");
-        
-        
-        citiesCopy[prevCity] = citiesCopy[upperLimit];
-
+        Console.Write(cities[prevCity] + " ");
         
         for (int i = 0; i < 9; i++)
         {
-            int nextCity = random.Next(1,upperLimit--);
+            int nextCity = random.Next(1,82);
             Console.Write("({0}) ",distances[prevCity,nextCity]);
-            Console.Write(citiesCopy[nextCity]+" ");
-            citiesCopy[nextCity] = citiesCopy[upperLimit];
+            Console.Write(cities[nextCity]+" ");
             totalDistance += distances[prevCity, nextCity];
             prevCity = nextCity;
         }
+        
         Console.WriteLine();
         Console.WriteLine("TOTAL DISTANCE TRAVELLED: "+totalDistance);
         Console.WriteLine("--------------------------------");
@@ -138,14 +130,13 @@ internal class Program
         for (int i = 1; i < cities.Length; i++)
         {
             Console.Write(cities[i]+": ");
-            if (neighborhood[cities[i]].GetType()==new ArrayList().GetType())
+            
+            foreach(string c in (ArrayList)neighborhood[cities[i]])
             {
-                foreach(string c in (ArrayList)neighborhood[cities[i]])
-                {
-                    Console.Write(c+" ");
-                }
-                Console.WriteLine();
+                Console.Write(c+" ");
             }
+            Console.WriteLine();
+            
         }
 
         mostDistantNeighbours(neighborhood,distances,cities);
