@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "wYwMKeZEQFN7dy1bW7ar2aZQi9FpUK8TuZrNSw444XNBY2h6bEkBjkxQiNYoba7ZZegWNGb1ldGstCzejpk0zQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gundo\\source\\repos\\CityDistancesApp\\CityDistancesApp\\CityDistancesApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gundo\\.nuget\\packages\\closedxml\\0.105.0\\closedxml.0.105.0.nupkg.sha512",
+    "C:\\Users\\gundo\\.nuget\\packages\\closedxml.parser\\2.0.0\\closedxml.parser.2.0.0.nupkg.sha512",
+    "C:\\Users\\gundo\\.nuget\\packages\\documentformat.openxml\\3.1.1\\documentformat.openxml.3.1.1.nupkg.sha512",
+    "C:\\Users\\gundo\\.nuget\\packages\\documentformat.openxml.framework\\3.1.1\\documentformat.openxml.framework.3.1.1.nupkg.sha512",
+    "C:\\Users\\gundo\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",
+    "C:\\Users\\gundo\\.nuget\\packages\\rbush.signed\\4.0.0\\rbush.signed.4.0.0.nupkg.sha512",
+    "C:\\Users\\gundo\\.nuget\\packages\\sixlabors.fonts\\1.0.0\\sixlabors.fonts.1.0.0.nupkg.sha512",
+    "C:\\Users\\gundo\\.nuget\\packages\\system.io.packaging\\8.0.1\\system.io.packaging.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
