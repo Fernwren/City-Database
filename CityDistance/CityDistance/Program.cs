@@ -115,9 +115,43 @@ internal class Program
                 }
             }
         }
-        Console.WriteLine(c1 + "-" + c2 + " Distance:" + distance);  
+        Console.WriteLine("--------------------------------");
+        Console.WriteLine(c1 + "-" + c2 + " Distance:" + distance);
+        Console.WriteLine("--------------------------------");
     }
-   
+    static void roadToIzmir(string [] cities, Hashtable neighborhood, int[,] distances)
+    {
+        int city = random.Next(1, 82);
+        int totalDistance = 0;
+        string neighbour="";
+        
+        ArrayList road = new ArrayList();
+        road.Add(cities[city]);
+
+        while (city != 35)
+        {
+            int compareDistance = 10000;
+            foreach (string n in (ArrayList)neighborhood[cities[city]])
+            {
+                if (distances[35, getPlateNum(cities, n)] < compareDistance)
+                {
+                    compareDistance = distances[35, getPlateNum(cities,n)];
+                    neighbour = n;
+                }
+            }
+            road.Add(neighbour);
+            totalDistance += distances[city,getPlateNum(cities,neighbour)];
+            city = getPlateNum(cities, neighbour);
+        }
+        Console.WriteLine("--------------------------------");
+        foreach (string s in road)
+        {
+            Console.Write(s+" ");
+        }
+        Console.WriteLine("\nTotal Distance: "+totalDistance);
+        Console.WriteLine("--------------------------------");
+    }
+
 
     private static void Main(string[] args)
     {
@@ -140,5 +174,6 @@ internal class Program
         }
 
         mostDistantNeighbours(neighborhood,distances,cities);
+        roadToIzmir(cities,neighborhood,distances);
     }
 }
