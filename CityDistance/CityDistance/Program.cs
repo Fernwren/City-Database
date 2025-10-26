@@ -75,13 +75,17 @@ internal class Program
     static void tenCityTrip(string[] cities, int[,] distances)
     {
         int totalDistance = 0;
+        List<int> visitedCities = new List<int>();
         int prevCity = random.Next(1, 82);
+        visitedCities.Add(prevCity);
         Console.WriteLine("--------------------------------");
         Console.Write(cities[prevCity] + " ");
-        
+
         for (int i = 0; i < 9; i++)
         {
-            int nextCity = random.Next(1,82);
+            int nextCity = random.Next(1, 82);
+            while (visitedCities.Contains(nextCity)) { nextCity = random.Next(1, 82); }
+            visitedCities.Add(nextCity);
             Console.Write("({0}) ",distances[prevCity,nextCity]);
             Console.Write(cities[nextCity]+" ");
             totalDistance += distances[prevCity, nextCity];
@@ -175,5 +179,7 @@ internal class Program
 
         mostDistantNeighbours(neighborhood,distances,cities);
         roadToIzmir(cities,neighborhood,distances);
+
+        
     }
 }
