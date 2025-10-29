@@ -10,7 +10,7 @@ internal class Program
 {
     static Random random = new Random();
 
-    static int getPlateNum(string[] cities, string city)
+    static int getPlateNum(string[] cities, string city)//a function to get plate number of any city given
     {
         for (int i = 1; i <= 81; i++)
         {
@@ -18,9 +18,9 @@ internal class Program
         }
         return 0;
     }
-    static string[] readCities(string name)
+    static string[] readCities(string name)//a function to read a txt file and create an array
     {
-        string[] cities = new string[82];
+        string[] cities = new string[82];//all indices arranged to be the plate number of the related city. that's why the array has 82 elements
         int index = 1;
         StreamReader file = new StreamReader(name);
         string line= file.ReadLine();
@@ -31,7 +31,7 @@ internal class Program
         }
         return cities;
     }
-    static Hashtable readNeighbours(string name)
+    static Hashtable readNeighbours(string name)//a function to read a txt file and create a hashtable to store cities and their neighbours
     {
         Hashtable neighborhood = new Hashtable();
         StreamReader file = new StreamReader("neighbourCities.txt");
@@ -41,18 +41,18 @@ internal class Program
         {
             string[] temp = line.Split(new char[] { ',' });
             ArrayList temp2 = new ArrayList();
-            foreach (string i in temp.Skip(1)) { temp2.Add(i); }
+            foreach (string i in temp.Skip(1)) { temp2.Add(i); }//temp2 array list contains neighbours of the related city
             neighborhood[temp[0]] = temp2;
             line = file.ReadLine();
         }
         return neighborhood;
     }
-    static int[,] readCityDistancesXLSX(string path)
+    static int[,] readCityDistancesXLSX(string path)//a function to read a xlsx file and create a matrix to store cities' distances to eachother
     {
         XLWorkbook table = new XLWorkbook(path);
-        int[,] distances = new int[82, 82];
-
-        IXLWorksheet worksheet = table.Worksheet(1);
+        int[,] distances = new int[82, 82];//all indices arranged to be the plate number of related city. that's why the matrix is 82x82
+                                           //first row and first column of matrix consist of zeros
+        IXLWorksheet worksheet = table.Worksheet(1);//we used an external library
 
         for (int r = 3; r<=83; r++)
         {
@@ -72,7 +72,7 @@ internal class Program
 
         return distances;
     }
-    static void tenCityTrip(string[] cities, int[,] distances)
+    static void tenCityTrip(string[] cities, int[,] distances)//a function to generate a trip with ten randomly selected cities
     {
         int totalDistance = 0;
         List<int> visitedCities = new List<int>();
@@ -84,7 +84,7 @@ internal class Program
         for (int i = 0; i < 9; i++)
         {
             int nextCity = random.Next(1, 82);
-            while (visitedCities.Contains(nextCity)) { nextCity = random.Next(1, 82); }
+            while (visitedCities.Contains(nextCity)) { nextCity = random.Next(1, 82); }//to avoid visiting same city again
             visitedCities.Add(nextCity);
             Console.Write("({0}) ",distances[prevCity,nextCity]);
             Console.Write(cities[nextCity]+" ");
@@ -96,12 +96,12 @@ internal class Program
         Console.WriteLine("TOTAL DISTANCE TRAVELLED: "+totalDistance);
         Console.WriteLine("--------------------------------");
     }
-    static void mostDistantNeighbours(Hashtable neighborhood, int[,] distances, string[] cities)
+    static void mostDistantNeighbours(Hashtable neighborhood, int[,] distances, string[] cities)//a function to find the most distant neighbour pair
     {
         int distance = 0;
         string c1=" ";
         string c2=" ";
-        IDictionaryEnumerator enumerator = neighborhood.GetEnumerator();
+        IDictionaryEnumerator enumerator = neighborhood.GetEnumerator();//an enumerator to search through the hashtable
         
         while (enumerator.MoveNext())
         {
@@ -123,7 +123,7 @@ internal class Program
         Console.WriteLine(c1 + "-" + c2 + " Distance:" + distance);
         Console.WriteLine("--------------------------------");
     }
-    static void roadToIzmir(string [] cities, Hashtable neighborhood, int[,] distances)
+    static void roadToIzmir(string [] cities, Hashtable neighborhood, int[,] distances)//a function to find the shortest path to İzmir from a random city
     {
         int city = random.Next(1, 82);
         int totalDistance = 0;
@@ -134,7 +134,7 @@ internal class Program
 
         while (city != 35)
         {
-            int compareDistance = 10000;
+            int compareDistance = distances[35,city];//a reference distance to compare distances later
             foreach (string n in (ArrayList)neighborhood[cities[city]])
             {
                 if (distances[35, getPlateNum(cities, n)] < compareDistance)
@@ -165,21 +165,17 @@ internal class Program
 
         tenCityTrip(cities, distances);
 
-        for (int i = 1; i < cities.Length; i++)
+        for (int i = 1; i < cities.Length; i++)//printing all cities with their neighbours
         {
             Console.Write(cities[i]+": ");
-            
             foreach(string c in (ArrayList)neighborhood[cities[i]])
             {
                 Console.Write(c+" ");
             }
             Console.WriteLine();
-            
         }
 
         mostDistantNeighbours(neighborhood,distances,cities);
         roadToIzmir(cities,neighborhood,distances);
-
-        
     }
 }
